@@ -1,0 +1,23 @@
+---
+
+- name: Check Java
+  shell: command -v java
+  register: check_java
+  ignore_errors: True
+  changed_when: False
+
+- name: add repo for java 8
+  apt_repository: repo='ppa:webupd8team/java' state=present
+  when: check_java.rc > 0
+
+- name: set licence selected
+  shell: /bin/echo debconf shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
+  when: check_java.rc > 0
+
+- name: set licence seen
+  shell: /bin/echo debconf shared/accepted-oracle-license-v1-1 seen true | /usr/bin/debconf-set-selections
+  when: check_java.rc > 0
+
+- name: install java 8
+  apt: name=oracle-java8-installer state=latest update-cache=yes force=yes
+  when: check_java.rc > 0

@@ -1,0 +1,15 @@
+[Unit]
+Description=Logstash
+After=network.target
+
+[Service]
+User={{ logstash_user }}
+WorkingDirectory={{ logstash_path }}
+ExecStart={{ logstash_path }}/bin/logstash -f {{logstash_config_path}}/elasticsearch-output.conf
+Type=simple
+PIDFile=/var/run/logstash.pid
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

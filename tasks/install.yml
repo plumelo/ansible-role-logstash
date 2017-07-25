@@ -1,0 +1,25 @@
+---
+
+- name: Ensure Logstash user exist
+  user: name='{{ logstash_user }}' state=present
+
+- name: Ensure Logstash directory exists
+  file: path='{{ logstash_path }}' state=directory owner='{{ logstash_user }}' group='{{ logstash_user }}' mode='0755'
+
+- name: Downlod Logstash
+  unarchive:
+    src: '{{ logstash_download_url }}'
+    dest: '{{ logstash_path }}'
+    remote_src: yes
+    extra_opts: '--strip-components=1'
+    owner: '{{ logstash_user }}'
+    group: '{{ logstash_user }}'
+    creates: '{{ logstash_path }}/bin'
+
+- name: Add systemd service
+  template:
+    src: logstash.service.j2
+    dest: /etc/systemd/system/logstash.service
+
+- name: Enable Logstash service
+  systemd: name=logstash daemon_reload=yes enabled=yes state=started

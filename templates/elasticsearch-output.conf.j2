@@ -1,0 +1,5 @@
+input { stdin { } }
+output {
+elasticsearch { hosts => [{{ logstash_elasticsearch_hosts }}] }
+  stdout { codec => rubydebug }
+}
