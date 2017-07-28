@@ -10,25 +10,10 @@
 
 - name: Configuring Logstash
   template:
-    src: '{{ item }}.conf.j2'
-    dest: '{{ logstash_config_path }}/{{ item }}.conf'
+    src: "{{ item.value.template | default('logstash.conf.j2') }}"
+    dest: '{{ logstash_config_path }}/{{ item.key }}.conf'
     owner: '{{ logstash_user }}'
     group: '{{ logstash_user }}'
     mode: 0644
-  with_items: '{{ logstash_base_configs }}'
-  notify:
-    - restart logstash
-
-- name: Ensure logstash pattern folders exist
-  file:
-    path: '{{ item }}'
-    state: directory
-    owner: '{{ logstash_user }}'
-    group: '{{ logstash_user }}'
-    mode: 0775
-    recurse: yes
-  with_items:
-    - /usr/share/logstash/lib/logstash/outputs/elasticsearch
-    - /usr/share/logstash/patterns
-  notify:
-    - restart logstash
+  with_dict: '{{ logstash_configs }}'
+  notify: restart logstash

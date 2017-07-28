@@ -6,23 +6,6 @@ logstash_path: /usr/share/logstash
 logstash_config_path: /etc/logstash/conf.d
 logstash_log_path: /var/log/logstash
 logstash_download_url: 'https://artifacts.elastic.co/downloads/logstash/logstash-{{ logstash_version }}.tar.gz'
-logstash_listen_port_beats: 5044
-logstash_elasticsearch_hosts:
-  - http://localhost:9200
-logstash_base_file_inputs: []
-  # - path: '/var/log/nginx/access.log'
-  #   type: 'nginx-access'
-  # - path: '/var/log/nginx/error.log'
-  #   type: 'nginx-error'
-  # - path: '/var/log/mail.log'
-  #   type: 'postfix-log'
-  # - path: '/var/log/redis/redis-server.log'
-  #   type: 'redis-server'
-logstash_base_configs:
-  - 'beats-input'
-  - 'elasticsearch-output'
-logstash_install_plugins:
-  - x-pack
-  - logstash-input-beats
-  # - logstash-output-elasticsearch
-  # - logstash-filter-grok
+
+logstash_configs: {}
+logstash_plugins: []

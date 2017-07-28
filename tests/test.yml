@@ -4,7 +4,13 @@
   become: yes
   roles:
     - role: logstash
-      logstash:
+      logstash_configs:
         elasticsearch:
-          host: localhost
-          port: 9200
+          - input { stdin { } }
+          - |
+            output {
+              elasticsearch { hosts => ["localhost:9200"] }
+              stdout { codec => rubydebug }
+            }
+        beats:
+          template: "beats.conf.j2"
