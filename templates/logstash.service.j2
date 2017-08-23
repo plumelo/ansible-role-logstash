@@ -5,7 +5,7 @@ After=network.target
 [Service]
 User={{ logstash_user }}
 WorkingDirectory={{ logstash_path }}
-ExecStart={{ logstash_path }}/bin/logstash -f {{logstash_config_path}}
+ExecStart={{ logstash_path }}/bin/logstash -f {{ logstash_config_path }}
 Type=simple
 PIDFile=/var/run/logstash.pid
 Restart=always
