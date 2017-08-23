@@ -10,7 +10,7 @@
       - '{{ logstash_config_path }}'
       - '{{ logstash_certs_path }}'
 
-- name: Downlod Logstash
+- name: Download Logstash
   unarchive:
     src: '{{ logstash_download_url }}'
     dest: '{{ logstash_path }}'
