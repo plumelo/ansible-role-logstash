@@ -9,5 +9,7 @@ logstash_certs_path: '{{ logstash_path }}/certs'
 logstash_log_path: /var/log/logstash
 logstash_download_url: 'https://artifacts.elastic.co/downloads/logstash/logstash-{{ logstash_version }}.tar.gz'
 
+logstash_certs: []
+
 logstash_configs: {}
 logstash_plugins: []
