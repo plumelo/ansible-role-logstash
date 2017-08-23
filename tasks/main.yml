@@ -1,6 +1,13 @@
 ---
 
 - include: java.yml
+  tags: [logstash, logstash-java]
+
 - include: install.yml
+  tags: [logstash, logstash-install]
+
 - include: config.yml
+  tags: [logstash, logstash-config]
+
 - include: plugins.yml
+  tags: [logstash, logstash-plugins]
