@@ -2,7 +2,7 @@
 # defaults file for ansible-role-logstash
 logstash_version: 5.5.0
 logstash_user: logstash
-logstash_path: /usr/share/logstash
+logstash_path: /opt/logstash
 logstash_config_path: /etc/logstash/conf.d
 logstash_log_path: /var/log/logstash
 logstash_download_url: 'https://artifacts.elastic.co/downloads/logstash/logstash-{{ logstash_version }}.tar.gz'
