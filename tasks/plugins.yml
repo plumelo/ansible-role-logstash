@@ -1,24 +1,16 @@
 ---
 
-# - name: Ensure plugins directory exists
-#   file:
-#     path: /opt/logstash
-#     state: directory
-#     owner: '{{ logstash_user }}'
-#     group: '{{ logstash_user }}'
-#     mode: 0755
-
 - name: Get list of installed plugins.
-  command: bin/logstash-plugin list
+  shell: bin/logstash-plugin list
   args:
-    chdir: /usr/share/logstash
+    chdir: '{{ logstash_path }}'
   register: logstash_plugins_installed
   changed_when: false
 
 - name: Install configured plugins.
-  command: bin/logstash-plugin install '{{ item }}'
+  shell: bin/logstash-plugin install '{{ item }}'
   become: yes
   args:
-    chdir: /usr/share/logstash
+    chdir: '{{ logstash_path }}'
   with_items: '{{ logstash_plugins }}'
   when: 'item not in logstash_plugins_installed.stdout'
