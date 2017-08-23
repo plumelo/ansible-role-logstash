@@ -9,6 +9,7 @@
       - '{{ logstash_path }}'
       - '{{ logstash_config_path }}'
       - '{{ logstash_certs_path }}'
+      - '{{ logstash_templates_path }}'
 
 - name: Download Logstash
   unarchive:

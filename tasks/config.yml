@@ -21,3 +21,8 @@
   copy: src={{ item }} dest={{ logstash_certs_path }} owner={{ logstash_user }} group={{ logstash_user }}
   with_items: '{{ logstash_certs }}'
   notify: restart logstash
+
+- name: Copy Logstash - ElasticSearch templates
+  copy: src={{ item }} dest={{ logstash_templates_path }} owner={{ logstash_user }} group={{ logstash_user }}
+  with_items: '{{ logstash_templates }}'
+  notify: restart logstash
