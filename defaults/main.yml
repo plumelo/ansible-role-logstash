@@ -11,5 +11,9 @@ logstash_download_url: 'https://artifacts.elastic.co/downloads/logstash/logstash
 
 logstash_certs: []
 
+_logstash_defaults: {}
+logstash_config: {}
+_logstash_config: '{{ _logstash_defaults|combine(logstash_config) }}'
+
 logstash_configs: {}
 logstash_plugins: []

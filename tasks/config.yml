@@ -10,6 +10,12 @@
   with_dict: '{{ logstash_configs }}'
   notify: restart logstash
 
+- name: Configure Logstash
+  template:
+    src: logstash.yml.j2
+    dest: '{{ logstash_path }}/config/logstash.yml'
+  when: _logstash_config|default(false)
+  notify: restart logstash
 
 - name: Copy Logstash certificates
   copy: src={{ item }} dest={{ logstash_certs_path }} owner={{ logstash_user }} group={{ logstash_user }}
