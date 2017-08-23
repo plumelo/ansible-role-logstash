@@ -1,10 +1,10 @@
 ---
 
 - name: Ensure Logstash user exist
-  user: name='{{ logstash_user }}' state=present
+  user: name={{ logstash_user }} state=present
 
 - name: Ensure Logstash directory exists
-  file: path='{{ logstash_path }}' state=directory owner='{{ logstash_user }}' group='{{ logstash_user }}' mode='0755'
+  file: path={{ logstash_path }} state=directory owner={{ logstash_user }} group={{ logstash_user }} mode='0755'
 
 - name: Downlod Logstash
   unarchive:
