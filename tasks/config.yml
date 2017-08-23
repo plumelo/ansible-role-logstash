@@ -9,3 +9,9 @@
     mode: 0644
   with_dict: '{{ logstash_configs }}'
   notify: restart logstash
+
+
+- name: Copy Logstash certificates
+  copy: src={{ item }} dest={{ logstash_certs_path }} owner={{ logstash_user }} group={{ logstash_user }}
+  with_items: '{{ logstash_certs }}'
+  notify: restart logstash
