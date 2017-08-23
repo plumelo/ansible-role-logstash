@@ -1,14 +1,6 @@
 ---
 
-- name: Ensure Logstash config directory exist
-  file:
-    path: '{{ logstash_config_path }}'
-    state: directory
-    owner: '{{ logstash_user }}'
-    group: '{{ logstash_user }}'
-    mode: 0775
-
-- name: Configuring Logstash
+- name: Configure Logstash pipelines
   template:
     src: "{{ item.value.template | default('logstash.conf.j2') }}"
     dest: '{{ logstash_config_path }}/{{ item.key }}.conf'
