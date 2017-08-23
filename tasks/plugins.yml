@@ -14,3 +14,4 @@
     chdir: '{{ logstash_path }}'
   with_items: '{{ logstash_plugins }}'
   when: 'item not in logstash_plugins_installed.stdout'
+  notify: restart logstash
