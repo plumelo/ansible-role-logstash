@@ -1,6 +1,6 @@
 ---
 # defaults file for ansible-role-logstash
-logstash_version: 5.5.0
+logstash_version: 6.0.1
 logstash_user: logstash
 logstash_path: /opt/logstash
 logstash_config_path: '{{ logstash_path }}/conf.d'
